@@ -1,0 +1,289 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "name": "Untitled0.ipynb",
+      "provenance": [],
+      "authorship_tag": "ABX9TyNql6J8qDSZwo5J4wvQQZLl",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/Khushi1223/assigments/blob/main/project%20\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "3PNNNcAY6QuU",
+        "outputId": "954ceb67-36be-4f9a-beb8-76d15b7ee7c5"
+      },
+      "source": [
+        "pip install pyowm"
+      ],
+      "execution_count": 1,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "text": [
+            "Collecting pyowm\n",
+            "\u001b[?25l  Downloading https://files.pythonhosted.org/packages/7b/7d/ed92151b2d1e0f425f18bf4d686bc5530b47e4c853c0a814ff5d8c416259/pyowm-3.2.0-py3-none-any.whl (3.1MB)\n",
+            "\u001b[K     |████████████████████████████████| 3.1MB 4.0MB/s \n",
+            "\u001b[?25hRequirement already satisfied: PySocks<2,>=1.7.1 in /usr/local/lib/python3.7/dist-packages (from pyowm) (1.7.1)\n",
+            "Requirement already satisfied: requests[socks] in /usr/local/lib/python3.7/dist-packages (from pyowm) (2.23.0)\n",
+            "Collecting geojson<3,>=2.3.0\n",
+            "  Downloading https://files.pythonhosted.org/packages/e4/8d/9e28e9af95739e6d2d2f8d4bef0b3432da40b7c3588fbad4298c1be09e48/geojson-2.5.0-py2.py3-none-any.whl\n",
+            "Requirement already satisfied: certifi>=2017.4.17 in /usr/local/lib/python3.7/dist-packages (from requests[socks]->pyowm) (2021.5.30)\n",
+            "Requirement already satisfied: idna<3,>=2.5 in /usr/local/lib/python3.7/dist-packages (from requests[socks]->pyowm) (2.10)\n",
+            "Requirement already satisfied: urllib3!=1.25.0,!=1.25.1,<1.26,>=1.21.1 in /usr/local/lib/python3.7/dist-packages (from requests[socks]->pyowm) (1.24.3)\n",
+            "Requirement already satisfied: chardet<4,>=3.0.2 in /usr/local/lib/python3.7/dist-packages (from requests[socks]->pyowm) (3.0.4)\n",
+            "Installing collected packages: geojson, pyowm\n",
+            "Successfully installed geojson-2.5.0 pyowm-3.2.0\n"
+          ],
+          "name": "stdout"
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "gGKTKQAH6ndV"
+      },
+      "source": [
+        "from pyowm import OWM"
+      ],
+      "execution_count": 6,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "-kpgKXgO74jj"
+      },
+      "source": [
+        "\n",
+        "owm = OWM('860292843f075d86208360258bf5bd53')\n",
+        "mgr = owm.weather_manager()\n"
+      ],
+      "execution_count": 15,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "EcFACjZA_ixH"
+      },
+      "source": [
+        "observation = mgr.weather_at_place('Bengaluru, IN')\n",
+        "w = observation.weather"
+      ],
+      "execution_count": 18,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/",
+          "height": 35
+        },
+        "id": "mKKV-MgdB0_W",
+        "outputId": "45b35b6f-cfea-49b8-91d9-7825dba44008"
+      },
+      "source": [
+        "w.detailed_status  "
+      ],
+      "execution_count": 19,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "application/vnd.google.colaboratory.intrinsic+json": {
+              "type": "string"
+            },
+            "text/plain": [
+              "'overcast clouds'"
+            ]
+          },
+          "metadata": {
+            "tags": []
+          },
+          "execution_count": 19
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "U8nGv7vb_85f",
+        "outputId": "1dce5464-2a9d-4b23-c559-3b5f58372d83"
+      },
+      "source": [
+        "w.wind()"
+      ],
+      "execution_count": 20,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "{'deg': 290, 'gust': 5.74, 'speed': 3.36}"
+            ]
+          },
+          "metadata": {
+            "tags": []
+          },
+          "execution_count": 20
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "5sFEKvENB5FU",
+        "outputId": "da94b91a-b1bd-4420-8574-8bdf15d7903e"
+      },
+      "source": [
+        "w.humidity \n"
+      ],
+      "execution_count": 22,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "81"
+            ]
+          },
+          "metadata": {
+            "tags": []
+          },
+          "execution_count": 22
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "pQxU7M6nCFKE",
+        "outputId": "76ce07cc-2499-4f6c-f1c4-8575280a4428"
+      },
+      "source": [
+        "w.temperature('celsius')"
+      ],
+      "execution_count": 24,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "{'feels_like': 24.46,\n",
+              " 'temp': 23.9,\n",
+              " 'temp_kf': None,\n",
+              " 'temp_max': 23.9,\n",
+              " 'temp_min': 23.9}"
+            ]
+          },
+          "metadata": {
+            "tags": []
+          },
+          "execution_count": 24
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "9RVlIfTQCFaD",
+        "outputId": "f58f1b3a-74a6-418b-f345-298737d3f62d"
+      },
+      "source": [
+        "w.rain   "
+      ],
+      "execution_count": 25,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "{}"
+            ]
+          },
+          "metadata": {
+            "tags": []
+          },
+          "execution_count": 25
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "ytGw1hBjCFc8"
+      },
+      "source": [
+        "w.heat_index "
+      ],
+      "execution_count": 27,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "6rTrqIoSCFhJ",
+        "outputId": "ca93bad6-f208-455f-986e-68162622e193"
+      },
+      "source": [
+        "w.clouds "
+      ],
+      "execution_count": 28,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "100"
+            ]
+          },
+          "metadata": {
+            "tags": []
+          },
+          "execution_count": 28
+        }
+      ]
+    }
+  ]
+}
